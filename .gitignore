@@ -34,3 +34,7 @@ coverage
 
 # Vitest
 __screenshots__/
+
+# AI Agent Files
+GEMINI.md
+CLAUDE.md

@@ -1,44 +1,48 @@
-# vue-study-week1
+# Vue.js 스터디 - 1주차
 
-This template should help get you started developing with Vue 3 in Vite.
+이 프로젝트는 Vue.js 3의 다양한 개념들을 배우고 연습하기 위해 만들어졌습니다. Vite라는 도구를 사용하여 개발되었으며, 웹 페이지의 반응성, 부품(컴포넌트), 화면 전환(라우팅), 그리고 데이터 관리(상태 관리)와 같은 주제들을 다루는 예제들을 포함하고 있습니다.
 
-## Recommended IDE Setup
+## 프로젝트 준비하기
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+이 프로젝트를 시작하기 위해 필요한 파일들을 설치합니다.
 
 ```sh
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+## 사용 가능한 명령어
 
+### 개발 환경 실행하기
+이 명령어를 실행하면 개발 중인 웹 페이지를 실시간으로 볼 수 있는 서버가 시작됩니다. 코드를 변경하면 바로 웹 페이지에 반영됩니다.
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
-
+### 웹 페이지 빌드하기 (배포용)
+웹 페이지를 사용자들에게 배포할 수 있는 형태로 만듭니다. 이 과정에서 파일 크기를 줄이고 성능을 최적화합니다.
 ```sh
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### 빌드된 웹 페이지 미리보기
+`npm run build`로 만들어진 웹 페이지가 실제로 어떻게 작동하는지 미리 확인해볼 수 있습니다.
+```sh
+npm run preview
+```
 
+### 코드 스타일 검사
+코드에서 발생할 수 있는 잠재적인 문제나 스타일 오류를 찾아내고 수정합니다.
 ```sh
 npm run lint
 ```
+
+### 코드 자동 정렬
+`src/` 폴더 안의 코드들을 일관된 형식으로 자동으로 정렬하여 읽기 쉽게 만듭니다.
+```sh
+npm run format
+```
+
+## 추천 개발 도구
+
+- [VS Code](https://code.visualstudio.com/) (코드를 편집하는 프로그램)
+- [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (VS Code에서 Vue.js 개발을 도와주는 확장 프로그램)
