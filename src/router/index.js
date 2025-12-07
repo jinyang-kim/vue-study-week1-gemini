@@ -23,6 +23,16 @@ const router = createRouter({
       name: 'watch',
       component: () => import('../views/Week1/Day1_Watch.vue'),
     },
+    {
+      path: '/week1/components',
+      name: 'components',
+      component: () => import('../views/Week1/Day2_Components.vue'),
+    },
+    {
+      path: '/week1/slots',
+      name: 'slots',
+      component: () => import('../views/Week1/Day2_Slots.vue'),
+    },
   ],
 })
 
