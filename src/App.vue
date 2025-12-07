@@ -11,6 +11,7 @@ import { RouterLink, RouterView } from 'vue-router'
       <RouterLink to="/week1/watch">4단계: Watch</RouterLink>
       <RouterLink to="/week1/components">Day 2: 컴포넌트</RouterLink>
       <RouterLink to="/week1/slots">2일차 심화: Slots</RouterLink>
+      <RouterLink to="/week1/blog">Day 3: 동적 라우팅</RouterLink>
     </nav>
   </header>
 

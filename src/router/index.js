@@ -33,6 +33,16 @@ const router = createRouter({
       name: 'slots',
       component: () => import('../views/Week1/Day2_Slots.vue'),
     },
+    {
+      path: '/week1/blog',
+      name: 'blog',
+      component: () => import('../views/Week1/Day3_PostList.vue'),
+    },
+    {
+      path: '/week1/blog/:id',
+      name: 'postDetail',
+      component: () => import('../views/Week1/Day3_PostDetail.vue'),
+    },
   ],
 })
 
