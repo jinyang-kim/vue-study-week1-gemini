@@ -52,6 +52,11 @@ const router = createRouter({
       path: '/week1/axios',
       name: 'axios',
       component: () => import('../views/Week1/Day5_Axios.vue')
+    },
+    {
+      path: '/week2/todo',
+      name: 'todo',
+      component: () => import('../views/Week2/TodoApp.vue')
     }
   ]
 });
