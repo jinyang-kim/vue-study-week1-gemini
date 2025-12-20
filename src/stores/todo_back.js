@@ -1,15 +1,13 @@
 import { defineStore } from 'pinia';
-import { useStorage } from '@/composables/useStorage';
+import { ref } from 'vue';
+import { watch } from 'vue';
 
 export const useTodoStore = defineStore('todo', () => {
   // 1. State: 할 일 목록 데이터 (배열)
   // 예시 데이터 하나 넣어둔다.
   // const todos = ref([{ id: 1, text: 'Vue3 정복하기', done: false }]);
   // 초기값: 로컬 스토리지 확인 (없으면 빈 배열)
-  // const todos = ref(JSON.parse(localStorage.getItem('todos')) || []);
-
-  // 'todos'라는 키로 저장하고, 초기값은 []이다.
-  const todos = useStorage('todos', []);
+  const todos = ref(JSON.parse(localStorage.getItem('todos')) || []);
 
   // 2. Action: 할 일 추가하기 (Create)
   const addTodo = (text) => {
@@ -35,20 +33,19 @@ export const useTodoStore = defineStore('todo', () => {
   };
 
   const clearAll = () => {
-    // if (confirm('정말 모든 할 일을 지우시겠습니까?')) {
-    //   todos.value = [];
-    // }
-    todos.value = [];
+    if (confirm('정말 모든 할 일을 지우시겠습니까?')) {
+      todos.value = [];
+    }
   };
 
-  // watch(
-  //   todos,
-  //   (newTodos) => {
-  //     // 배열이 변활 때마다 문자열로 바꿔서 전환
-  //     localStorage.setItem('todos', JSON.stringify(newTodos));
-  //   },
-  //   { deep: true }
-  // ); // 객체 내부 변경 감지를 위해 deep: true 필수
+  watch(
+    todos,
+    (newTodos) => {
+      // 배열이 변활 때마다 문자열로 바꿔서 전환
+      localStorage.setItem('todos', JSON.stringify(newTodos));
+    },
+    { deep: true }
+  ); // 객체 내부 변경 감지를 위해 deep: true 필수
 
   return { todos, addTodo, toggleTodo, deleteTodo, clearAll };
 });

@@ -1,14 +1,14 @@
 <script setup>
 import TodoHeader from '@/components/todo/TodoHeader.vue';
 import TodoInput from '@/components/todo/TodoInput.vue';
-import TodoLst from '@/components/todo/TodoLst.vue';
+import TodoList from '@/components/todo/TodoList.vue';
 </script>
 
 <template>
   <div class="todo-container">
     <TodoHeader />
     <TodoInput />
-    <TodoLst />
+    <TodoList />
   </div>
 </template>
 

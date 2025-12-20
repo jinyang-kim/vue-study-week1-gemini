@@ -2,11 +2,23 @@
 import { storeToRefs } from 'pinia';
 import { useTodoStore } from '@/stores/todo';
 import { ref, computed } from 'vue';
+import AppModal from '@/components/common/AppModal.vue';
 
 // 스토어 연결
 const store = useTodoStore();
 const { todos } = storeToRefs(store);
 const { toggleTodo, deleteTodo, clearAll } = store;
+
+const isModalOpen = ref(false);
+
+const openModal = () => {
+  isModalOpen.value = true;
+};
+
+const handleClear = () => {
+  clearAll();
+  isModalOpen.value = false;
+};
 
 const hideCompleted = ref(false); // 완료된 항목 체크박스 상태
 
@@ -55,9 +67,27 @@ const filteredTodos = computed(() => {
 
   <div class="todo-container">
     <div class="footer" v-if="todos.length > 0">
-      <button class="clear-btn" @click="clearAll">전체 삭제</button>
+      <button class="clear-btn" @click="openModal">전체 삭제</button>
     </div>
   </div>
+
+  <AppModal :isOpen="isModalOpen" @close="isModalOpen = false">
+    <h3>주의</h3>
+    <p>정말 모든 할 일을 지우시겠습니까?</p>
+    <div style="margin-top: 15px">
+      <button
+        @click="handleClear"
+        style="
+          background: #ff5252;
+          color: white;
+          border: none;
+          padding: 8px 16px;
+        "
+      >
+        진짜 삭제할래요
+      </button>
+    </div>
+  </AppModal>
 </template>
 
 <style lang="scss" scoped>
