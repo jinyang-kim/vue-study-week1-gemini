@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { useStorage } from '@/composables/useStorage';
+import { ref } from 'vue';
 
 export const useTodoStore = defineStore('todo', () => {
   // 1. State: 할 일 목록 데이터 (배열)
@@ -8,8 +9,18 @@ export const useTodoStore = defineStore('todo', () => {
   // 초기값: 로컬 스토리지 확인 (없으면 빈 배열)
   // const todos = ref(JSON.parse(localStorage.getItem('todos')) || []);
 
+  const isLoading = ref(false);
+
   // 'todos'라는 키로 저장하고, 초기값은 []이다.
   const todos = useStorage('todos', []);
+
+  const fetchTodos = async () => {
+    isLoading.value = true;
+
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
+    isLoading.value = false;
+  };
 
   // 2. Action: 할 일 추가하기 (Create)
   const addTodo = (text) => {
@@ -50,5 +61,13 @@ export const useTodoStore = defineStore('todo', () => {
   //   { deep: true }
   // ); // 객체 내부 변경 감지를 위해 deep: true 필수
 
-  return { todos, addTodo, toggleTodo, deleteTodo, clearAll };
+  return {
+    todos,
+    isLoading,
+    fetchTodos,
+    addTodo,
+    toggleTodo,
+    deleteTodo,
+    clearAll
+  };
 });

@@ -1,4 +1,6 @@
 <script setup>
+import { onMounted } from 'vue';
+import SkeletonLoader from '../common/SkeletonLoader.vue';
 import { storeToRefs } from 'pinia';
 import { useTodoStore } from '@/stores/todo';
 import { ref, computed } from 'vue';
@@ -6,8 +8,12 @@ import AppModal from '@/components/common/AppModal.vue';
 
 // 스토어 연결
 const store = useTodoStore();
-const { todos } = storeToRefs(store);
-const { toggleTodo, deleteTodo, clearAll } = store;
+const { todos, isLoading } = storeToRefs(store);
+const { fetchTodos, toggleTodo, deleteTodo, clearAll } = store;
+
+onMounted(() => {
+  fetchTodos();
+});
 
 const isModalOpen = ref(false);
 
@@ -35,14 +41,22 @@ const filteredTodos = computed(() => {
 </script>
 
 <template>
-  <div class="todo-completed-hide">
+  <div v-if="isLoading" class="skeleton-list">
+    <div class="skeleton-item" v-for="n in 3" :key="n">
+      <SkeletonLoader style="width: 20px; height: 20px; margin-right: 10px" />
+      <SkeletonLoader style="flex: 1; height: 24px" />
+      <SkeletonLoader style="width: 50px; height: 30px; margin-left: 10px" />
+    </div>
+  </div>
+
+  <div class="todo-completed-hide" v-if="todos.length > 0">
     <label>
       <input type="checkbox" v-model="hideCompleted" />
       <span>완료된 항목 숨기기</span>
     </label>
   </div>
 
-  <TransitionGroup name="list" tag="ul" class="todo-list">
+  <TransitionGroup v-else name="list" tag="ul" class="todo-list">
     <li v-for="todo in filteredTodos" :key="todo.id" class="todo-item">
       <input
         type="checkbox"
@@ -91,6 +105,15 @@ const filteredTodos = computed(() => {
 </template>
 
 <style lang="scss" scoped>
+.skeleton-list {
+  .skeleton-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+  }
+}
+
 .todo-completed-hide {
   label {
     display: flex;
